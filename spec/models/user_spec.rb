@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+    let(:user) {subject}
+
     it 'has a password field' do
         expect(User.new).to respond_to(:password)
     end
@@ -22,7 +24,6 @@ RSpec.describe User, type: :model do
     end
 
     it 'defaults access_level to 0' do
-        user = User.new
         expect(user.access_level).to be 0
     end
 
@@ -32,5 +33,21 @@ RSpec.describe User, type: :model do
 
     it 'has a reset_password_sent_at field' do
         expect(User.new).to respond_to(:reset_password_sent_at)
+    end
+
+    it 'has many stories' do
+        story = Story.new
+
+        user.stories << story
+
+        expect(user.stories).to include(story)
+    end
+
+    it 'has many emotes' do
+        emote = Emote.new
+
+        user.emotes << emote
+
+        expect(user.emotes).to include(emote)
     end
 end
