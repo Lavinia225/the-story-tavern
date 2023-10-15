@@ -20,4 +20,6 @@ RSpec.describe Genre, type: :model do
 
         expect(genre.tags).to include(tag)
     end
+
+    it { is_expected.to validate_presence_of :genre }
 end

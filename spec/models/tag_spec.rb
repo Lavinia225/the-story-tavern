@@ -24,4 +24,9 @@ RSpec.describe Tag, type: :model do
 
         expect(tag.genre).to be genre
     end
+
+    describe 'Basic Validations' do
+        it { is_expected.to validate_presence_of :story_id }
+        it { is_expected.to validate_presence_of :genre_id }
+    end
 end
