@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_15_202536) do
+ActiveRecord::Schema.define(version: 2023_10_15_223944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(version: 2023_10_15_202536) do
   create_table "emotes", force: :cascade do |t|
     t.integer "story_id"
     t.integer "user_id"
-    t.boolean "happy"
-    t.boolean "sad"
-    t.boolean "mad"
-    t.boolean "heart"
+    t.boolean "happy", default: false
+    t.boolean "sad", default: false
+    t.boolean "mad", default: false
+    t.boolean "heart", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
