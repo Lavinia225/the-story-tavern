@@ -42,4 +42,13 @@ RSpec.describe Story, type: :model do
 
         expect(story.emotes).to include(emote)
     end
+
+    describe 'Validations' do
+        it { is_expected.to validate_presence_of :title }
+        it { is_expected.to validate_presence_of :body }
+        it { is_expected.to validate_presence_of :user_id }
+
+        it { is_expected.to validate_length_of(:body).is_at_least(50)}
+
+    end
 end
