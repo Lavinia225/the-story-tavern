@@ -50,4 +50,11 @@ RSpec.describe User, type: :model do
 
         expect(user.emotes).to include(emote)
     end
+
+    describe 'Validations' do
+        it { is_expected.to validate_presence_of :username }
+        it { is_expected.to validate_presence_of :display_name}
+        it { is_expected.to validate_presence_of :password }
+        it { is_expected.to validate_presence_of :email }
+    end
 end
