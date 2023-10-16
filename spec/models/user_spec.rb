@@ -51,10 +51,52 @@ RSpec.describe User, type: :model do
         expect(user.emotes).to include(emote)
     end
 
-    describe 'Validations' do
+    describe 'Basic Validations' do
         it { is_expected.to validate_presence_of :username }
         it { is_expected.to validate_presence_of :display_name}
         it { is_expected.to validate_presence_of :password }
         it { is_expected.to validate_presence_of :email }
+
+
+        it { is_expected.to validate_uniqueness_of :username }
+        it { is_expected.to validate_uniqueness_of :display_name }
+        it { is_expected.to validate_uniqueness_of :email }
+
+    end
+
+    it 'allows proper email formatting' do
+        is_expected.to allow_value("meow@gmail.com").for(:email)
+    end
+
+    describe 'Does not allow improper emails' do
+        it {is_expected.not_to allow_value("@wow.meow").for(:email)}
+        it {is_expected.not_to allow_value("wow.meow").for(:email)}
+        it {is_expected.not_to allow_value("wowmeow").for(:email)}
+        it {is_expected.not_to allow_value("wow.me@ow").for(:email)}
+    end
+
+    describe 'Password Security' do
+        it {is_expected.to validate_length_of(:password).is_at_least(8)}
+        it {is_expected.to validate_length_of(:password).is_at_most(40)}
+
+        it 'does not auto deny all passwords' do
+            is_expected.to allow_value("ThisisaTestofCertainty!111").for(:password)
+        end
+
+        it 'must include a lowercase' do
+            is_expected.not_to allow_value('AAAAAAAAAA$@!').for(:password)
+        end
+
+        it 'must include an uppercase' do
+            is_expected.not_to allow_value('baaaakaaaaa!').for(:password)
+        end
+
+        it 'must include a number' do
+            is_expected.not_to allow_value("Accept me please, trust me!").for(:password)
+        end
+
+        it 'must include a symbol' do
+            is_expected.not_to allow_value('Braaaiiinnnsss').for(:password)
+        end
     end
 end
