@@ -7,7 +7,7 @@ RSpec.describe "Sessions", type: :request do
   describe "POST /login" do
     it 'returns the user as JSON' do
       post '/login', params: {username: "meow", password: "Validpasssw0rd!"}
-      
+
       expect(response.body).to include_json({
         id: user.id,
         display_name: "bork",
@@ -21,7 +21,7 @@ RSpec.describe "Sessions", type: :request do
       expect(session[:user_id]).to be(user.id)
     end
 
-    it 'sets the session to the current user' do
+    it 'sets the session id to the current user id' do
       post '/login', params: {username: "meow", password: "Validpasssw0rd!"}
       post '/login', params: {username: "reowr", password: "Inval1d!!!"}
 
@@ -38,6 +38,24 @@ RSpec.describe "Sessions", type: :request do
       post '/login', params: {username: "", password: "boop"}
 
       expect(response).to have_http_status(:unauthorized)
+    end
+  end
+
+  describe "DELETE /logout" do
+    before do 
+      post '/login', params: {username: "meow", password: "Validpasssw0rd!"}
+    end
+
+    it 'deletes the session user id' do
+      delete '/logout'
+
+      expect(session[:user_id]).to eq(nil)
+    end
+
+    it 'returns no content' do
+      delete '/logout'
+
+      expect(response).to have_http_status(:no_content)
     end
   end
 end
