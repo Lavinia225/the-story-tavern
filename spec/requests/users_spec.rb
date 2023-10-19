@@ -58,13 +58,4 @@ RSpec.describe "Users", type: :request do
       end
     end
   end
-
-  #describe "GET /me" do
- #   let!(:user) {User.create(username: "meow", display_name: "bork", password: "Validpasssw0rd!", email: "theexistingemailgmail.com")}
-  #  let!(:user_two) {User.create(username: "reowr", display_name: "a display name", password: "Inval1d!!!", email: "thesentientkind@ymail.com")}
-#
-  #  it 'returns the first user when logged in' do
-  #    post '/login', params: {username: "meow", password: "Validpasssw0rd!"}
-  #  end
-  #end
 end
