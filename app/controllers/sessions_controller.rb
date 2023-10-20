@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
     skip_before_action :authorize, only: :create
-    
+
     def create
         user = User.find_by(username: params[:username])
 
@@ -13,11 +13,7 @@ class SessionsController < ApplicationController
     end
 
     def destroy
-        if session[:user_id]
-            session.delete(:user_id)
-            head :no_content
-        else
-            render json: {errors: ["You can not logout without being logged in"]}, status: :unauthorized
-        end
+        session.delete(:user_id)
+        head :no_content
     end
 end

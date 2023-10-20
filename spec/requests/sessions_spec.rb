@@ -63,9 +63,9 @@ RSpec.describe "Sessions", type: :request do
     before do
       delete '/logout'
     end
-    
+
     it 'returns an error starting you can not logout without being logged in' do
-      expect(response.body).to include_json({errors: ["You can not logout without being logged in"]})
+      expect(response.body).to include_json({errors: ["Not Authorized!"]})
     end
 
     it 'returns HTTP 401, Unauthorized' do

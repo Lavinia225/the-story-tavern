@@ -58,4 +58,19 @@ RSpec.describe "Users", type: :request do
       end
     end
   end
+
+  describe 'GET /me' do
+
+    it 'returns the current user' do
+      user = User.create(username: "meow", display_name: "bork", password: "Validpasss0wrd!", email: "theexistingemail@gmail.com")
+      post '/login', params: {username: user.username, password: user.password}
+      get '/me'
+ 
+      expect(response.body).to include_json({
+        display_name: user.display_name,
+        id: user.id,
+        access_level: 0
+      })
+    end
+  end
 end
