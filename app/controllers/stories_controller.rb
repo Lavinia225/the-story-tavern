@@ -8,12 +8,12 @@ class StoriesController < ApplicationController
         if page > 1
             start_index = page * 10 - 9
         end
-            render json: Story.all.slice(start_index, 10)
+            render json: Story.all.slice(start_index, 10), include: :genres
     end
 
     def show
         story = Story.find(params[:id])
-        render json: story
+        render json: story, serializer: IndividualStorySerializer, include: [:genres, :emotes]
     end
 
     def create
