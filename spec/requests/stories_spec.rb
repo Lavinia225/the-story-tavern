@@ -42,7 +42,7 @@ RSpec.describe "Stories", type: :request do
   end
 
   describe 'POST /stories/new' do #Complains that user's information has been taken by... itself.
-    let!(:story_params) {{user_id: user.id, title: Faker::Lorem.unique.sentence, body: Faker::Lorem.paragraph_by_chars(number: rand(50..800))}}
+    let!(:story_params) {{user_id: User.first.id, title: Faker::Lorem.unique.sentence, body: Faker::Lorem.paragraph_by_chars(number: rand(50..800))}}
 
     it 'creates a new story' do
       expect { post '/signup', params: story_params}.to change(Story, :count).by(1)

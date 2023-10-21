@@ -3,13 +3,12 @@ class StoriesController < ApplicationController
 
     def index
         page = params[:page].to_i
-        start_index = page * 10 - 9
+        start_index = 0
 
         if page > 1
-            render json: Story.all.slice(start_index, 10)
-        else
-            render json: Story.all.slice(0, 10)
+            start_index = page * 10 - 9
         end
+            render json: Story.all.slice(start_index, 10)
     end
 
     def show
