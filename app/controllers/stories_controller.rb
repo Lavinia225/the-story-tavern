@@ -12,4 +12,9 @@ class StoriesController < ApplicationController
             render json: Story.all.slice(0, 10)
         end
     end
+
+    def show
+        story = Story.find(params[:id])
+        render json: story
+    end
 end
