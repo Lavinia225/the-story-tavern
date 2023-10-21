@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
     has_secure_password
 
-    email_regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    email_regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,7})+$/
 
     has_many :stories
     has_many :emotes, dependent: :destroy
