@@ -8,12 +8,12 @@ class StoriesController < ApplicationController
         if page > 1
             start_index = page * 10 - 9
         end
-            render json: Story.all.slice(start_index, 10), include: :genres
+            render json: Story.all.slice(start_index, 10)
     end
 
     def show
-        story = Story.find(params[:id])
-        render json: story, serializer: IndividualStorySerializer, include: [:genres, :emotes]
+        find_story
+        render json: @story, serializer: IndividualStorySerializer
     end
 
     def create
@@ -21,9 +21,24 @@ class StoriesController < ApplicationController
         render json: story, status: :created
     end
 
+    def update
+        find_story
+
+        if @story.user_id == @current_user.id
+            @story.update!(story_params)
+            render json: @story, serializer: IndividualStorySerializer
+        else
+            render json: {errors: ["You are not authorized to modify this story!"]}, status: :unauthorized
+        end
+    end
+
     private
 
     def story_params
         params.permit(:title, :body)
+    end
+
+    def find_story
+        @story = Story.find(params[:id])
     end
 end
