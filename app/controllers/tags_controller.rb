@@ -1,5 +1,4 @@
 class TagsController < ApplicationController
-    rescue_from NoMethodError, with: :render_not_found
 
     def create
         tag = Tag.create!(tag_params)
@@ -7,7 +6,7 @@ class TagsController < ApplicationController
     end
 
     def destroy
-        tag = Tag.find_by(["story_id = ? AND genre_id = ?", params[:story_id], params[:genre_id]])
+        tag = Tag.find(params[:id])
         tag.destroy
         head :no_content
     end
@@ -18,7 +17,10 @@ class TagsController < ApplicationController
         params.permit(:story_id, :genre_id)
     end
 
-    def render_not_found 
-        render json: {errors: ["Tag not found"]}, status: :not_found
+    def authorize
+        @current_user = User.find_by(id: session[:user_id])
+        tag = Tag.find(params[:id])
+
+        render json: {errors: ["Not Authorized to modify these tags!"]}, status: :unauthorized unless @current_user && @current_user.id == tag.story.user_id
     end
 end
