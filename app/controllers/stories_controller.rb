@@ -17,7 +17,7 @@ class StoriesController < ApplicationController
     end
 
     def create
-        story = @current_user.stories.create(story_params)
+        story = @current_user.stories.create!(story_params)
         render json: story, status: :created
     end
 
@@ -29,6 +29,17 @@ class StoriesController < ApplicationController
             render json: @story, serializer: IndividualStorySerializer
         else
             render json: {errors: ["You are not authorized to modify this story!"]}, status: :unauthorized
+        end
+    end
+
+    def destroy
+        find_story
+
+        if @story.user_id == @current_user.id
+            @story.destroy
+            head :no_content
+        else
+            render json: {errors: ["Not Authorized to delete this story!"]}, status: :unauthorized
         end
     end
 
