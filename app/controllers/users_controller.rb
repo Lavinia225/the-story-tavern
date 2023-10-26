@@ -12,6 +12,16 @@ class UsersController < ApplicationController
         render json: @current_user
     end
 
+    def destroy
+        if params[:id].to_i == @current_user.id
+            UserMailer.with(user: @current_user).goodbye_email.deliver_now
+            @current_user.destroy!
+            head :no_content
+        else
+            render json: {errors: ["You can not delete other users."]}, status: :unauthorized
+        end
+    end
+
     private
 
     def user_params
