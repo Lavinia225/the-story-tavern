@@ -31,7 +31,3 @@
 /config/master.key
 
 /containment zone
-
-# Temporarily Ignore
-app/mailers/
-spec/mailers/
