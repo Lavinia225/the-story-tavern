@@ -1,17 +1,21 @@
 import {useState, useContext} from 'react'
 import {UserContext} from '../context/user'
+import {ErrorsContext} from '../context/errors'
 
 function LoginForm(){
     const {user, setUser} = useContext(UserContext)
+    const {errors, setErrors, displayErrors} = useContext(ErrorsContext)
     const [formData, setFormData] = useState({
         username: "",
         password: ""
     })
+    console.log("User:", user)
+    console.log("Errors:", errors)
 
     async function handleSubmit(e){
         e.preventDefault()
 
-        //Remember to create error context and check for blank fields here
+        if (formData.username.length < 1 || formData.password.length < 1) return setErrors(["Username or Password can not be blank."])
 
         const configObject = {
             method: "POST",
@@ -27,9 +31,10 @@ function LoginForm(){
 
         if (response.ok){
             setUser(data)
+            setErrors([])
         }
         else{
-            console.log(response)
+            setErrors(data.errors)
         }
     }
 
@@ -42,6 +47,7 @@ function LoginForm(){
 
     return(
     <div>
+        {displayErrors()}
         <form id='login-form' onSubmit={handleSubmit}>
             <label htmlFor='username-field'>Username: </label>
             <input id='username-field' type='text' name='username' value={formData.username} onChange={handleChange} />
