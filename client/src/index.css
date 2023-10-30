@@ -19,3 +19,17 @@ body {
   top: 15px;
   height: 20px;
 }
+
+#home-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#home {
+  margin: auto;
+  max-width: 80%
+}
+
+#home > h2, p {
+  text-align: center;
+}

@@ -1,6 +1,7 @@
 import {Switch, Route} from 'react-router-dom'
 import UserBar from './user_related/UserBar';
 import LoginForm from './user_related/LoginForm';
+import Home from './Home'
 
 function App() {
   return (
@@ -8,9 +9,7 @@ function App() {
       <UserBar />
       <Switch>
         <Route exact path='/'>
-          <header className="App-header">
-            <p>Haiya! If by some miracle you have obtained the url to this website, know that it is still being created.</p>
-          </header>
+          <Home />
         </Route>
         <Route path='/login'>
           <LoginForm />
