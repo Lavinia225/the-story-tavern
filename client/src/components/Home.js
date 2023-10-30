@@ -19,6 +19,9 @@ function Home(){
                     </ul>
                 </div>
             </div>
+            <footer>
+                <p>If needed, contact the admin at thepuddingdeity@gmail.com with an email subject of: "The Story Tavern"</p>
+            </footer>
         </div>
     )
 }
