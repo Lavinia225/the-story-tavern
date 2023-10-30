@@ -1,16 +1,16 @@
 import {useState, useContext} from 'react'
+import {useHistory} from 'react-router-dom'
 import {UserContext} from '../context/user'
 import {ErrorsContext} from '../context/errors'
 
 function LoginForm(){
-    const {user, setUser} = useContext(UserContext)
-    const {errors, setErrors, displayErrors} = useContext(ErrorsContext)
+    const history = useHistory()
+    const {setUser} = useContext(UserContext)
+    const {setErrors, displayErrors} = useContext(ErrorsContext)
     const [formData, setFormData] = useState({
         username: "",
         password: ""
     })
-    console.log("User:", user)
-    console.log("Errors:", errors)
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -32,6 +32,7 @@ function LoginForm(){
         if (response.ok){
             setUser(data)
             setErrors([])
+            history.goBack()
         }
         else{
             setErrors(data.errors)
