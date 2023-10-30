@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom/cjs/react-router-dom.min"
 function UserBar(){
     const {user, setUser} = useContext(UserContext)
 
+    console.log(user)
     function renderWelcomeLogout(){
         return(
             <>
@@ -23,7 +24,7 @@ function UserBar(){
     }
 
     function logout(){
-        fetch('/logout')
+        fetch('/logout', {method: "DELETE"})
         .then(setUser({id: 0, display_name: "", access_level: 0}))
     }
     
