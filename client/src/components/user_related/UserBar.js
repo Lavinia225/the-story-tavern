@@ -5,12 +5,16 @@ import { NavLink } from "react-router-dom/cjs/react-router-dom.min"
 function UserBar(){
     const {user, setUser} = useContext(UserContext)
 
-    console.log(user)
     function renderWelcomeLogout(){
         return(
             <>
                 <p>Welcome, {user.display_name}</p>
-                <button onClick={logout}>Logout</button>
+                <div className='dropdown'>
+                    <button>Profile</button>
+                    <div className='dropdown-content'>
+                        <a onClick={logout}>Logout</a>
+                    </div>
+                </div>
             </>
         )
     }

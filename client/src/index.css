@@ -14,12 +14,6 @@ body {
   padding-right: 10px;
 }
 
-#user-bar > button {
-  position: relative;
-  top: 15px;
-  height: 20px;
-}
-
 #home-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -32,4 +26,41 @@ body {
 
 #home > h2, p {
   text-align: center;
+}
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 35px;
+  width: 100%;
+  background-color: #d3d3f2;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content > a {
+  display: block;
+  color: #000;
+  padding: 5px;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  color: #FFF;
+  background-color: #FD3F92 ;
+}
+
+.dropdown > button {
+  position: relative;
+  top: 15px;
+  height: 20px;
 }
