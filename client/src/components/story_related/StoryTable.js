@@ -1,5 +1,6 @@
 import {useState, useEffect, useContext} from 'react'
 import { ErrorsContext } from "../context/errors"
+import StoryPreview from './StoryPreview'
 
 function StoryTable(){
     const {setErrors, displayErrors} = useContext(ErrorsContext)
@@ -21,13 +22,19 @@ function StoryTable(){
         }
     }, [])
 
-    console.log(stories)
-
     return(
         <div id='stories'>
-            <p>Test</p>
             {displayErrors()}
-            {stories.length > 0 ? stories.map(story => <p>{story.summary}</p>): null}
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Stories</th>
+                        <th>Genres</th>
+                        <th>Last Edited</th>
+                    </tr>
+                    {stories.map(story => <StoryPreview key={story.id} story={story}/>)}
+                </tbody>
+            </table>
         </div>
     )
 }
