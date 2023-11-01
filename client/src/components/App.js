@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 import LoginForm from './user_related/LoginForm';
 import Home from './Home'
 import SignupForm from './user_related/SignupForm';
+import StoryTable from './story_related/StoryTable';
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
         </Route>
         <Route path='/signup'>
           <SignupForm />
+        </Route>
+        <Route path='/stories'>
+          <StoryTable />
         </Route>
       </Switch>
     </div>
