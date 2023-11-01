@@ -64,3 +64,11 @@ body {
   top: 15px;
   height: 20px;
 }
+
+#navbar {
+  text-align: center;
+}
+
+#navbar > * {
+  padding-right: 10px;
+}
