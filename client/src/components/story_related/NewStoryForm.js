@@ -1,8 +1,10 @@
 import {useState, useEffect, useContext} from 'react'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { ErrorsContext } from '../context/errors'
 import GenreSelector from './GenreSelector'
 
 function NewStoryForm(){
+    const history = useHistory()
     const [genres, setGenres] = useState([])
     const {setErrors, displayErrors} = useContext(ErrorsContext)
     const [formData, setFormData] = useState({
@@ -26,18 +28,36 @@ function NewStoryForm(){
         }
     }, [])
 
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault()
         const selectedGenres = []
 
         findSelectedGenres()
         
+        const configObject = {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({...formData, genres: selectedGenres})
+        }
+
+        const response = await fetch('/stories', configObject)
+        const data = await response.json()
+
+        if (response.ok){
+            history.push(`/stories/${data.id}`)
+        }
+        else{
+            setErrors(data.errors)
+        }
 
         function findSelectedGenres(){
             const selectElement = e.target[0]
             for(let i = 0; i < selectElement.length; i++){
                 if(selectElement[i].selected === true){
-                    selectedGenres.push(selectElement[i].value)
+                    selectedGenres.push(parseInt(selectElement[i].value))
                 }
             }
         }

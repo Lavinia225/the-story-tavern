@@ -9,7 +9,7 @@ function StoryPreview({story}){
             </td>
             <td>
                 <ul>
-                    {story.genres.map(genre => <li>{genre.genre}</li>)}
+                    {story.genres.map(genre => <li key={Math.random()}>{genre.genre}</li>)}
                 </ul>
             </td>
             <td>{story.formatted_updated_at}</td>

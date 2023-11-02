@@ -18,6 +18,11 @@ class StoriesController < ApplicationController
 
     def create
         story = @current_user.stories.create!(story_params)
+        
+        params[:genres].size.times do |i|
+            byebug
+            story.tags.create(genre_id: params[:genres][i])
+        end
         render json: story, status: :created
     end
 
