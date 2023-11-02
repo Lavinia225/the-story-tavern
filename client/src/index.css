@@ -67,8 +67,20 @@ body {
 
 #navbar {
   text-align: center;
+  padding-top: 20px;
 }
 
 #navbar > * {
   padding-right: 10px;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+#stories > table {
+  margin: auto;
+  max-width: 70%;
+  position: relative;
+  top: 100px;
 }
