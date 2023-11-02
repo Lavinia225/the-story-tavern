@@ -2,7 +2,7 @@ import {useState, useEffect, useContext} from 'react'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import { UserContext } from '../context/user'
 import { ErrorsContext } from '../context/errors'
-import StoryTable from './StoryTable'
+import EmoteBar from './EmoteBar'
 
 function Story(){
     const params = useParams()
@@ -46,10 +46,9 @@ function Story(){
             <p id='story-author'>By: {story.user}</p>
             {story.genres.length > 0 ? <p>{genreStringer()}</p> : null}
             <p id='story-body'>{story.body}</p>
+            <EmoteBar emotes={story.emotes}/>
         </div>
     )
 }
 
 export default Story
-
-//story = id, title, user, body, emotes[], genres[]
