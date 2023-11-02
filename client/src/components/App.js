@@ -23,11 +23,11 @@ function App() {
         <Route path='/signup'>
           <SignupForm />
         </Route>
-        <Route path='/stories/:id'>
-          <Story />
-        </Route>
         <Route path='/stories/new'>
           <NewStoryForm />
+        </Route>
+        <Route path='/stories/:id'>
+          <Story />
         </Route>
         <Route path='/stories'>
           <StoryTable />

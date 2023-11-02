@@ -90,3 +90,21 @@ table, th, td {
   top: 125px;
   left: 50%
 }
+
+#story {
+  text-align: center;
+}
+
+#story > h2 {
+  margin-bottom: 0px;
+}
+
+#story-author {
+  margin-top: 0px;
+}
+
+#story-body {
+  margin: auto;
+  max-width: 800px;
+  overflow-wrap: break-word;
+}

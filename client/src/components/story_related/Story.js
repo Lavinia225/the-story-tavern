@@ -25,13 +25,12 @@ function Story(){
         }
     }, [])
 
-    console.log(story)
     return(
-        <div>
+        <div id='story'>
             {displayErrors()}
             <h2>{story.title}</h2>
-            <p>By: {story.user}</p>
-            <p>{story.body}</p>
+            <p id='story-author'>By: {story.user}</p>
+            <p id='story-body'>{story.body}</p>
         </div>
     )
 }
