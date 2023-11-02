@@ -6,6 +6,7 @@ import Home from './Home'
 import SignupForm from './user_related/SignupForm';
 import StoryTable from './story_related/StoryTable';
 import NewStoryForm from './story_related/NewStoryForm';
+import Story from './story_related/Story'
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
         </Route>
         <Route path='/signup'>
           <SignupForm />
+        </Route>
+        <Route path='/stories/:id'>
+          <Story />
         </Route>
         <Route path='/stories/new'>
           <NewStoryForm />
