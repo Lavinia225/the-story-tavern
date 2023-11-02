@@ -1,8 +1,12 @@
 import {useState, useEffect, useContext} from 'react'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { ErrorsContext } from "../context/errors"
+import { UserContext } from '../context/user'
 import StoryPreview from './StoryPreview'
 
 function StoryTable(){
+    const history = useHistory()
+    const {user} = useContext(UserContext)
     const {setErrors, displayErrors} = useContext(ErrorsContext)
     const [stories, setStories] = useState([])
 
@@ -22,9 +26,14 @@ function StoryTable(){
         }
     }, [])
 
+    function handleRedirect(){
+        history.push('/stories/new')
+    }
+
     return(
         <div id='stories'>
             {displayErrors()}
+            {user.id !== 0 ? <button id='create-stories-button' onClick={handleRedirect}>Create Story</button> : null}
             <table>
                 <tbody>
                     <tr>

@@ -5,6 +5,7 @@ import LoginForm from './user_related/LoginForm';
 import Home from './Home'
 import SignupForm from './user_related/SignupForm';
 import StoryTable from './story_related/StoryTable';
+import NewStoryForm from './story_related/NewStoryForm';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
         </Route>
         <Route path='/signup'>
           <SignupForm />
+        </Route>
+        <Route path='/stories/new'>
+          <NewStoryForm />
         </Route>
         <Route path='/stories'>
           <StoryTable />

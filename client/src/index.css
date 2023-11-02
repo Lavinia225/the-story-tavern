@@ -84,3 +84,9 @@ table, th, td {
   position: relative;
   top: 100px;
 }
+
+#stories > button {
+  position: absolute;
+  top: 125px;
+  left: 50%
+}
