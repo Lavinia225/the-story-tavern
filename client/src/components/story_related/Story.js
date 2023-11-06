@@ -46,7 +46,7 @@ function Story(){
             <p id='story-author'>By: {story.user}</p>
             {story.genres.length > 0 ? <p>{genreStringer()}</p> : null}
             <p id='story-body'>{story.body}</p>
-            <EmoteBar emotes={story.emotes}/>
+            <EmoteBar emotes={story.emotes} storyId={story.id}/>
         </div>
     )
 }

@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react"
 import { UserContext } from "../context/user"
 import { ErrorsContext } from "../context/errors"
 
-function EmoteBar({emotes}){
+function EmoteBar({emotes, storyId}){
     const {user} = useContext(UserContext)
     const {setErrors} = useContext(ErrorsContext)
     const [loaded, setLoaded] = useState(false)
@@ -12,43 +12,83 @@ function EmoteBar({emotes}){
         mad : 0,
         heart: 0
     })
-    const [userEmote, setUserEmote] = useState({
-        happy: false,
-        sad: false,
-        mad: false,
-        heart: false
-    })
+    const [userEmoteIndex, setUserEmoteIndex] = useState(-1)
 
     useEffect(()=>{
+        Array.prototype.indexOfObject = function (param){
+            for (let i = 0; i < this.length; i++){
+                if (typeof param === 'function'){
+                    if(param(this[i])) return i-1
+                }
+                else{
+                    if (this[i] === param) return i-1
+                }
+            }
+            return -1
+        }
         if (!loaded){
             populateEmoteMap()
-        }
-        if (emotes.find(emote =>emote.user_id === user.id)){
-            console.log("clear!")
-        }
-
-        function populateEmoteMap(){
-            const tempEmoteMap = {...emoteMap}
-
-            for(let i = 0; i < emotes.length; i++){
-                const {happy, sad, mad, heart} = emotes[i]
-
-                if (happy === true) tempEmoteMap.happy += 1
-                if (sad === true) tempEmoteMap.sad += 1
-                if (mad === true) tempEmoteMap.mad += 1
-                if (heart === true) tempEmoteMap.heart += 1
-            }
-            setEmoteMap(tempEmoteMap)
             setLoaded(true)
         }
     }, [])
 
+    useEffect(()=>{
+        const emoteIndex = emotes.indexOfObject(emote =>{
+            const a = emote.user_id === user.id
+            debugger
+            return emote.user_id === user.id
+        })
+    
+        if (emoteIndex !== -1){
+            setUserEmoteIndex(emoteIndex)
+        }
+        else{
+            emotes.push({
+                user_id: user.id,
+                story_id: storyId,
+                happy: false,
+                sad: false,
+                mad: false,
+                heart: false
+            })
+            setUserEmoteIndex(()=>emotes.length - 1)
+        }
+    }, [user])
+
+    function populateEmoteMap(){
+        const tempEmoteMap = {happy: 0, sad: 0, mad: 0, heart: 0}
+
+        for(let i = 0; i < emotes.length; i++){
+            const {happy, sad, mad, heart} = emotes[i]
+
+            if (happy === true) tempEmoteMap.happy += 1
+            if (sad === true) tempEmoteMap.sad += 1
+            if (mad === true) tempEmoteMap.mad += 1
+            if (heart === true) tempEmoteMap.heart += 1
+        }
+        setEmoteMap(tempEmoteMap)
+    }
+
+    async function handleClick(e){
+       // Change to to emote[whatever] = whatever
+        emotes.map(emote =>{
+            if (emote.user_id === user.id){
+                return {...emote, [e.target.name]: !emote[e.target.name]}
+            }
+            else{
+                return emote
+            }
+        })
+        console.log(emotes)
+    }
+    if (!loaded) return <p>Loading...</p>
+
     return(
-        <div>
-            <p className={userEmote.happy === true ? "active" : "inactive"}>😀 {emoteMap.happy}</p>
-            <p className={userEmote.sad === true ? "active" : "inactive"}>😢 {emoteMap.sad}</p>
-            <p className={userEmote.mad === true ? "active" : "inactive"}>😠 {emoteMap.mad}</p>
-            <p className={userEmote.heart === true ? "active" : "inactive"}>❤️ {emoteMap.heart}</p>
+        <div className='emotebar'>
+            <button className={emotes[userEmoteIndex].happy === true ? "selected" : "deselected"} name="happy" onClick={handleClick}>😀 {emoteMap.happy}</button>
+            <button className={emotes[userEmoteIndex].sad === true ? "selected" : "deselected"} name="sad" onClick={handleClick}>😢 {emoteMap.sad}</button>
+            <button className={emotes[userEmoteIndex].mad === true ? "selected" : "deselected"} name="mad" onClick={handleClick}>😠 {emoteMap.mad}</button>
+            <button className={emotes[userEmoteIndex].heart === true ? "selected" : "deselected"} name="heart" onClick={handleClick}>❤️ {emoteMap.heart}</button>
         </div>
     )
 }
