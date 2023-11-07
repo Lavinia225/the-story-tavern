@@ -5,13 +5,16 @@ import App from './components/App';
 import './index.css';
 import {UserProvider} from './components/context/user'
 import {ErrorsProvider} from './components/context/errors'
+import { GenresProvider } from './components/context/genres';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <ErrorsProvider>
       <UserProvider>
-        <App />
+        <GenresProvider>
+          <App />
+        </GenresProvider>
       </UserProvider>
     </ErrorsProvider>
   </BrowserRouter>
