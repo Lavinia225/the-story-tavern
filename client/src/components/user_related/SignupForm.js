@@ -17,7 +17,6 @@ function SignupForm(){
     async function handleSubmit(e){
         e.preventDefault()
 
-        if (formDataFieldsEmpty()) return setErrors(["No fields can be blank."])
 
         const configObject = {
             method: "POST",
@@ -41,15 +40,6 @@ function SignupForm(){
         }
     }
 
-    function formDataFieldsEmpty(){
-        for (const key of Object.keys(formData)){
-            if (formData[key].length < 1){
-                return true
-            }
-        }
-        return false
-    }
-
     function handleChange(e){
         setFormData({
             ...formData,
@@ -62,13 +52,13 @@ function SignupForm(){
             {displayErrors()}
             <form id='create-account' onSubmit={handleSubmit}>
                 <label htmlFor='username'>Username: </label>
-                <input type='text' name='username' value={formData.username} onChange={handleChange}/>
+                <input type='text' name='username' value={formData.username} onChange={handleChange} required/>
                 <label htmlFor='display_name'>Display Name: </label>
-                <input type='text' name='display_name' value={formData.display_name} onChange={handleChange}/>
+                <input type='text' name='display_name' value={formData.display_name} onChange={handleChange} required/>
                 <label htmlFor='email'>Email: </label>
-                <input type='text' name='email' value={formData.email} onChange={handleChange}/>
+                <input type='text' name='email' value={formData.email} onChange={handleChange} required/>
                 <label htmlFor='password'>Password: </label>
-                <input type='password' name='password' value={formData.password} onChange={handleChange}/>
+                <input type='password' name='password' value={formData.password} onChange={handleChange} required/>
                 <button type='submit'>Submit</button>
             </form>
         </div>

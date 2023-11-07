@@ -15,8 +15,6 @@ function LoginForm(){
     async function handleSubmit(e){
         e.preventDefault()
 
-        if (formData.username.length < 1 || formData.password.length < 1) return setErrors(["Username or Password can not be blank."])
-
         const configObject = {
             method: "POST",
             headers: {
@@ -51,9 +49,9 @@ function LoginForm(){
         {displayErrors()}
         <form id='login-form' onSubmit={handleSubmit}>
             <label htmlFor='username-field'>Username: </label>
-            <input id='username-field' type='text' name='username' value={formData.username} onChange={handleChange} />
+            <input id='username-field' type='text' name='username' value={formData.username} onChange={handleChange} required/>
             <label htmlFor='password-field'>Password: </label>
-            <input id='password-field' type='password' name='password' value={formData.password} onChange={handleChange} />
+            <input id='password-field' type='password' name='password' value={formData.password} onChange={handleChange} required/>
             <button type='submit'>Submit</button>
         </form>
     </div>
