@@ -131,3 +131,16 @@ table, th, td {
 #genrelist {
   margin-top: 60px;
 }
+
+#newgenre > * {
+  display: block;
+  margin: auto;
+}
+
+#newgenreform {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  width: 300px;
+  padding-bottom: 20px;
+}

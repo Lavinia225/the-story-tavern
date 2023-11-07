@@ -1,7 +1,9 @@
 function NewGenreForm({handleCreateChange}){
     return (
-        <form>
-            hi
+        <form id='newgenreform'>
+            <label htmlFor="genre">Genre: </label>
+            <input type='text' />
+            <button type='submit'>Submit</button>
         </form>
     )
 }
