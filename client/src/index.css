@@ -120,3 +120,14 @@ table, th, td {
   background-color: #FD3F92;
   border: 1px solid #FD3F92;
 }
+
+#genrelist > ul {
+    display: grid;
+    width: 30vh;
+    margin: auto;
+    grid-template-columns: 1fr 1fr;
+}
+
+#genrelist {
+  margin-top: 60px;
+}

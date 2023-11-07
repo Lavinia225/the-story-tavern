@@ -2,7 +2,7 @@ class GenresController < ApplicationController
     skip_before_action :authorize, only: :index
     
     def index
-        render json: Genre.all
+        render json: Genre.all.order(:genre)
     end
 
     def show
