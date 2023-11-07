@@ -7,6 +7,7 @@ import SignupForm from './user_related/SignupForm';
 import StoryTable from './story_related/StoryTable';
 import NewStoryForm from './story_related/NewStoryForm';
 import Story from './story_related/Story'
+import GenreList from './genre_related/GenreList';
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
         </Route>
         <Route path='/stories'>
           <StoryTable />
+        </Route>
+        <Route path='/genres'>
+          <GenreList />
         </Route>
       </Switch>
     </div>
