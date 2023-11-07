@@ -1,4 +1,4 @@
-import {useState, useEffect, useContext} from 'react'
+import {useState, useContext} from 'react'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { ErrorsContext } from '../context/errors'
 import GenreSelector from './GenreSelector'
@@ -11,22 +11,6 @@ function NewStoryForm(){
         title: "",
         body: ""
     })
-
-    useEffect(()=>{
-        fetchGenres()
-
-        async function fetchGenres(){
-            const res = await fetch('/genres')
-            const data = await res.json()
-            
-            if (res.ok){
-                setGenres(data)
-            }
-            else{
-                setErrors(data.errors)
-            }
-        }
-    }, [])
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -70,7 +54,7 @@ function NewStoryForm(){
     return(
     <div>
         {displayErrors()}
-        <GenreSelector genres={genres}/>
+        <GenreSelector/>
         <form id='new-story' onSubmit={handleSubmit}>
             <label htmlFor='title'>Title: </label>
             <input type='text' id='title' onChange={handleChange} value={formData.title} />

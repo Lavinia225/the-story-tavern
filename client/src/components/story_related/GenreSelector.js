@@ -1,4 +1,9 @@
-function GenreSelector({genres}){
+import {useContext} from 'react'
+import { GenresContext } from '../context/genres'
+
+function GenreSelector(){
+    const {genres} = useContext(GenresContext)
+
     return(
         <div id='new-story-select'>
             <label htmlFor="new-story-select">{'Select one or more genres (shift click to multiselect)'}: </label>
