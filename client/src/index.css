@@ -144,3 +144,18 @@ table, th, td {
   width: 300px;
   padding-bottom: 20px;
 }
+
+#genrepage {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  width: 160px;
+  padding-top: 30px;
+}
+
+#genrepage > button {
+  position: relative;
+  top: 15px;
+  margin-left: 10px;
+  max-height: 20px;
+}
