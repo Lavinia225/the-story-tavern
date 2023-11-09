@@ -40,6 +40,19 @@ function GenrePage(){
         }
     }
 
+    function updateGenreState(data){
+        setGenre(data)
+        setEditing(false)
+        setGenres(genres.map(genre =>{
+            if (genre.id === data.id){
+                return data
+            }
+            else{
+                return genre
+            }
+        }))
+    }
+
     function handleEditClick(){
         setEditing(!editing)
     }
@@ -49,7 +62,7 @@ function GenrePage(){
     return(
         <div id='genrepage'>
             {displayErrors()}
-            {editing ? <GenreEditForm genre={genre} />: 
+            {editing ? <GenreEditForm genre={genre} updateGenreState={updateGenreState} handleCancel={handleEditClick}/>: 
                 <div>
                     <p>{genre.genre}</p>
                     <button onClick={handleEditClick}>Edit</button>
