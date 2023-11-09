@@ -33,14 +33,12 @@ function GenreEditForm({genre, updateGenreState, handleCancel}){
     }
 
     return(
-        <>
         <form id='genre-edit-form' onSubmit={handleSubmit}>
             <label htmlFor="genre">Genre: </label>
             <input type='text' onChange={handleChange} value={formData} required/>
             <button type='submit'>Submit</button>
+            <button onClick={handleCancel}>Cancel Editing</button>
         </form>
-        <button onClick={handleCancel}>Cancel Editing</button>
-        </>
     )
 }
 

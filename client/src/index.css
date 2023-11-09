@@ -145,11 +145,13 @@ table, th, td {
   padding-bottom: 20px;
 }
 
-#genrepage, #genrepage > div {
+#genrepage, #genrepage > div, #genrepage > form {
   display: flex;
   flex-direction: row;
   margin: auto;
   width: 160px;
+  height: 20px;
+  white-space: nowrap;
   padding-top: 30px;
 }
 
