@@ -1,12 +1,15 @@
 import {useState, useEffect, useContext} from 'react'
 import { useParams, useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import { GenresContext } from '../context/genres'
+import { UserContext } from '../context/user'
 import { ErrorsContext } from '../context/errors'
+import GenreEditForm from './GenreEditForm'
 
 function GenrePage(){
     const params = useParams()
     const history = useHistory()
     const {genres, setGenres} = useContext(GenresContext)
+    const {user} = useContext(UserContext)
     const {setErrors, displayErrors} = useContext(ErrorsContext)
     const [genre, setGenre] = useState({genre: "", id: 0})
     const [editing, setEditing] = useState(false)
@@ -37,12 +40,22 @@ function GenrePage(){
         }
     }
 
+    function handleEditClick(){
+        setEditing(!editing)
+    }
+
+    if (user.access_level < 1) return <h2 style={{color: 'purple', textAlign: "center"}}>You are not authorized to be here.</h2>
+
     return(
         <div id='genrepage'>
             {displayErrors()}
-            <p>{genre.genre}</p>
-            <button>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
+            {editing ? <GenreEditForm genre={genre} />: 
+                <div>
+                    <p>{genre.genre}</p>
+                    <button onClick={handleEditClick}>Edit</button>
+                    <button onClick={handleDelete}>Delete</button>
+                </div>
+            }
         </div>
     )
 }
