@@ -1,9 +1,17 @@
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+
 function StoryPreview({story}){
+    const history = useHistory()
+
+    function handleClick(){
+        history.push(`stories/${story.id}`)
+    }
+
     return(
         <tr id='story-preview'>
             <td>
-                <p id='story-preview-title'>{story.title}<br/>
-                    <span id='story-preview-user'>By: {story.user}</span>
+                <p id='story-preview-title'><span onClick={handleClick}>📖</span>{story.title}<br/>
+                    <span id='story-preview-user'>By: {story.creator}</span>
                 </p>
                 <p id='story-preview-summary'>{story.summary}</p>
             </td>

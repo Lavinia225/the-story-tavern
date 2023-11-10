@@ -3,7 +3,7 @@ module StoryMethods
         "#{object.body[0..100]}"
       end
     
-      def user
+      def creator
         "#{object.user.display_name}"
       end
     
