@@ -6,7 +6,7 @@ import Home from './Home'
 import SignupForm from './user_related/SignupForm';
 import StoryTable from './story_related/StoryTable';
 import NewStoryForm from './story_related/NewStoryForm';
-import Story from './story_related/Story'
+import StoryPage from './story_related/StoryPage'
 import GenreList from './genre_related/GenreList';
 import GenrePage from './genre_related/GenrePage'
 
@@ -29,7 +29,7 @@ function App() {
           <NewStoryForm />
         </Route>
         <Route path='/stories/:id'>
-          <Story />
+          <StoryPage />
         </Route>
         <Route path='/stories'>
           <StoryTable />

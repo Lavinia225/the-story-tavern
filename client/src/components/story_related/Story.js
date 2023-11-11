@@ -1,31 +1,13 @@
-import {useState, useEffect, useContext} from 'react'
-import { useParams, useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import {useContext} from 'react'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { UserContext } from '../context/user'
 import { ErrorsContext } from '../context/errors'
 import EmoteBar from './EmoteBar'
 
-function Story(){
-    const params = useParams()
+function Story({story}){
     const history= useHistory()
     const {user} = useContext(UserContext)
-    const {setErrors, displayErrors} = useContext(ErrorsContext)
-    const [story, setStory] = useState({})
-
-    useEffect(()=>{
-        fetchStory()
-
-        async function fetchStory(){
-            const response = await fetch(`/stories/${params.id}`)
-            const data = await response.json()
-
-            if (response.ok){
-                setStory(data)
-            }
-            else{
-                setErrors(data.errors)
-            }
-        }
-    }, [])
+    const {setErrors} = useContext(ErrorsContext)
 
     function genreStringer(){
         let genreString = "Genres: "
@@ -56,17 +38,8 @@ function Story(){
         return user.id === story.user_id || user.access_level > 0
     }
 
-    if (Object.keys(story).length < 1){
-        return (
-            <>
-                {displayErrors()}
-                <p>Loading</p>
-            </>)
-    }
-
     return(
         <div id='story'>
-            {displayErrors()}
             <h2>{story.title}
                 {deletePrivilages() ?
                  <span>

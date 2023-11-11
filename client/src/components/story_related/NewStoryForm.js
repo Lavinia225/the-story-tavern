@@ -5,7 +5,6 @@ import GenreSelector from './GenreSelector'
 
 function NewStoryForm(){
     const history = useHistory()
-    const [genres, setGenres] = useState([])
     const {setErrors, displayErrors} = useContext(ErrorsContext)
     const [formData, setFormData] = useState({
         title: "",
