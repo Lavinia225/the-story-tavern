@@ -34,6 +34,10 @@ function Story({story}){
         }
     }
 
+    function handleEditClick(){
+        history.push(`/stories/${story.id}/edit`)
+    }
+
     function deletePrivilages(){
         return user.id === story.user_id || user.access_level > 0
     }
@@ -43,7 +47,7 @@ function Story({story}){
             <h2>{story.title}
                 {deletePrivilages() ?
                  <span>
-                    {user.id === story.user_id ? <button>Edit</button> : null}
+                    {user.id === story.user_id ? <button onClick={handleEditClick}>Edit</button> : null}
                     <button onClick={handleDelete}>Delete</button>
                  </span>
                 : null}

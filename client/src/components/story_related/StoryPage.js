@@ -32,7 +32,7 @@ function StoryPage(){
                 <p>Loading</p>
             </>)
     }
-    
+
     return(
         <div>
             {displayErrors()}
