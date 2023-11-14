@@ -1,9 +1,11 @@
 import {useState, useContext} from 'react'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { ErrorsContext } from '../context/errors'
 import { UserContext } from '../context/user'
 import GenreSelector from './GenreSelector'
 
-function EditStoryForm({story}){
+function EditStoryForm({story, updateStoryState}){
+    const history = useHistory()
     const {user} = useContext(UserContext)
     const {setErrors} = useContext(ErrorsContext)
     const [formData, setFormData] = useState({
@@ -28,10 +30,11 @@ function EditStoryForm({story}){
         }
 
         const res = await fetch(`/stories/${story.id}`, configObject)
-        const data = res.json()
+        const data = await res.json()
 
         if (res.ok){
-            console.log(data)
+            updateStoryState(data)
+            history.goBack()
         }
         else{
             setErrors(data.errors)

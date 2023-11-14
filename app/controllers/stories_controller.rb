@@ -18,11 +18,11 @@ class StoriesController < ApplicationController
 
     def create
         story = @current_user.stories.create!(story_params)
-        
+
         params[:genres].size.times do |i|
-            byebug
-            story.tags.create(genre_id: params[:genres][i])
+            story.tags.create!(genre_id: params[:genres][i])
         end
+
         render json: story, status: :created
     end
 
@@ -31,6 +31,19 @@ class StoriesController < ApplicationController
 
         if @story.user_id == @current_user.id
             @story.update!(story_params)
+
+            @story.tags.size.times do |i|
+                unless params[:genres].include?(@story.tags[i].genre_id)
+                    @story.tags[i].destroy
+                end
+            end
+
+            params[:genres].size.times do |i|
+                unless @story.tags.find_by(genre_id: params[:genres][i])
+                    @story.tags.create!(genre_id: params[:genres][i])
+                end
+            end
+
             render json: @story, serializer: IndividualStorySerializer
         else
             render json: {errors: ["You are not authorized to modify this story!"]}, status: :unauthorized

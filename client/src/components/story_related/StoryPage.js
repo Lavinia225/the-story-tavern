@@ -25,6 +25,10 @@ function StoryPage(){
         }
     }, [])
 
+    function updateStoryState(data){
+        setStory(data)
+    }
+
     if (Object.keys(story).length < 1){
         return (
             <>
@@ -38,7 +42,7 @@ function StoryPage(){
             {displayErrors()}
             <Switch>
                 <Route path='/stories/:id/edit'>
-                    <EditStoryForm story={story}/>
+                    <EditStoryForm story={story} updateStoryState={updateStoryState}/>
                 </Route>
                 <Route path='/stories/:id'>
                     <Story story={story}/>
