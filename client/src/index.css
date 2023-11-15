@@ -161,3 +161,7 @@ table, th, td {
   margin-left: 10px;
   max-height: 20px;
 }
+
+#story > h2 > span{
+  padding-left: 10px;
+}

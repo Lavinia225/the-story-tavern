@@ -1,30 +1,46 @@
 import {useState, useEffect, useContext} from 'react'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min'
 import { ErrorsContext } from "../context/errors"
 import { UserContext } from '../context/user'
 import StoryPreview from './StoryPreview'
 
 function StoryTable(){
     const history = useHistory()
+    let {search} = useLocation()
     const {user} = useContext(UserContext)
     const {setErrors, displayErrors} = useContext(ErrorsContext)
     const [stories, setStories] = useState([])
 
     useEffect(()=>{
-        getStories()
-
-        async function getStories(){
-            const response = await fetch('/stories')
-            const data = await response.json()
-
-            if (response.ok){
-                setStories(data)
-            }
-            else{
-                setErrors(data.errors)
-            }
-        }
+        getStories(currentPage())
     }, [])
+
+    async function getStories(page){
+        const response = await fetch(`/stories?page=${page}`)
+        const data = await response.json()
+
+        if (response.ok){
+            setStories(data)
+        }
+        else{
+            setErrors(data.errors)
+        }
+    }
+
+    function gotoPreviousPage(){
+        history.push(`/stories?page=${currentPage() - 1}`)
+        getStories(currentPage() - 1)
+    }
+
+    function currentPage(){
+        const page = parseInt(search.slice(6))
+        if (!page || page === 1){
+            return 1
+        }
+        else{
+            return page
+        }
+    }
 
     function handleRedirect(){
         history.push('/stories/new')
@@ -33,7 +49,8 @@ function StoryTable(){
     return(
         <div id='stories'>
             {displayErrors()}
-            {user.id !== 0 ? <button id='create-stories-button' onClick={handleRedirect}>Create Story</button> : null}
+            {currentPage() !== 1 ? <button onClick={gotoPreviousPage}>Previous</button> : null}
+            {/*user.id !== 0 ? <button id='create-stories-button' onClick={handleRedirect}>Create Story</button> : null*/}
             <table>
                 <tbody>
                     <tr>
