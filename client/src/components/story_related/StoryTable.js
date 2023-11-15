@@ -27,9 +27,14 @@ function StoryTable(){
         }
     }
 
-    function gotoPreviousPage(){
+    function goToPreviousPage(){
         history.push(`/stories?page=${currentPage() - 1}`)
         getStories(currentPage() - 1)
+    }
+
+    function goToNextPage(){
+        history.push(`/stories?page=${currentPage() + 1}`)
+        getStories(currentPage() + 1)
     }
 
     function currentPage(){
@@ -49,8 +54,11 @@ function StoryTable(){
     return(
         <div id='stories'>
             {displayErrors()}
-            {currentPage() !== 1 ? <button onClick={gotoPreviousPage}>Previous</button> : null}
-            {/*user.id !== 0 ? <button id='create-stories-button' onClick={handleRedirect}>Create Story</button> : null*/}
+            <div id='button-container'>
+                {currentPage() !== 1 ? <button onClick={goToPreviousPage}>Previous Page</button> : null}
+                <button onClick={goToNextPage}>Next Page</button>
+                {user.id !== 0 ? <button id='create-stories-button' onClick={handleRedirect}>Create Story</button> : null}
+            </div>
             <table>
                 <tbody>
                     <tr>

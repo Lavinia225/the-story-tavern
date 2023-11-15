@@ -8,7 +8,13 @@ class StoriesController < ApplicationController
         if page > 1
             start_index = page * 10 - 9
         end
-            render json: Story.all.slice(start_index, 10)
+
+        stories = Story.all.slice(start_index, 10)
+        if stories
+            render json: stories
+        else
+            render json: {errors: ["There are no stories on this page or any afterwards."]}, status: :not_found
+        end
     end
 
     def show

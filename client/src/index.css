@@ -85,10 +85,11 @@ table, th, td {
   top: 100px;
 }
 
-#stories > button {
+#button-container {
+  display: flex;
   position: absolute;
   top: 125px;
-  left: 50%
+  left: 50%;
 }
 
 #story {
