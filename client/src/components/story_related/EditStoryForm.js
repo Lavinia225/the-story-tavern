@@ -63,7 +63,7 @@ function EditStoryForm({story, updateStoryState}){
                 <label htmlFor='title'>Title: </label>
                 <input type='text' id='title' onChange={handleChange} value={formData.title} required/>
                 <label htmlFor='body'>Body: </label>
-                <input type='textarea' id='body' onChange={handleChange} value={formData.body} required/>
+                <textarea id='body' onChange={handleChange} value={formData.body} required/>
                 <button type='submit'>Submit</button>
             </form>
         </div>

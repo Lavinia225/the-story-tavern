@@ -166,3 +166,25 @@ table, th, td {
 #story > h2 > span{
   padding-left: 10px;
 }
+
+#new-story {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 400px;
+  text-align: center;
+  padding-top: 20px;
+}
+
+#new-story > :nth-child(3) {
+  padding-top: 20px;
+}
+
+#new-story > button {
+  width: 150px;
+  margin: auto;
+}
+
+#new-story-select {
+  text-align: center;
+}
