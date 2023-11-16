@@ -37,7 +37,8 @@ function EmoteBar({emotes, storyId}){
                     happy: false,
                     sad: false,
                     mad: false,
-                    heart: false
+                    heart: false,
+                    artificial: true
                 })
                 setUserEmoteIndex(()=>emotes.length - 1)
             }
@@ -83,6 +84,28 @@ function EmoteBar({emotes, storyId}){
     async function handleClick(e){ 
         if (user.id === 0){
             setErrors(["You must be logged in to use this."])
+        }
+
+        const emote = {...emotes[userEmoteIndex], [e.target.name]: !emotes[userEmoteIndex][e.target.name]}
+
+        const configObject = {
+            method: emote.artificial ? "POST" : "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(emote)
+        }
+
+        const response = await fetch('/emotes', configObject)
+        const data = await response.json()
+
+        if(response.ok){
+            console.log(data)
+            //callback function to update emotes
+        }
+        else{
+            setErrors(data.errors)
         }
     }
     if (!loaded) return <p>Loading...</p>
