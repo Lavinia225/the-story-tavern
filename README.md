@@ -16,6 +16,7 @@ go [here](https://support.google.com/mail/answer/185833?hl=en) or if the link ha
 the app password they supply contains spaces in a few places. Omit those when putting them in the credentials file, what you should have is a 16 character alphabetic string.
 If gmail is not your preffered mail provider, the steps will look similar but you will need to go to lines 74 and 75 of config/environments/theenvironmentyourusing and
 adjust `Rails.application.credentials.gmail[:username]` to access whatever you named the object instead of gmail. Or call it gmail anyways and feed it a yahoo email to add confusion. In addition, adjust the `address` key a few lines up to your service. Overall, this is how your file should look like this:
+
 ![master.key file demonstration](setup_helper.png)
 
 
