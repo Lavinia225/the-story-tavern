@@ -4,7 +4,7 @@ Is an application for sharing short stories with others. Stories are tagged with
 
 ## Setup
 This project is built with Ruby on Rails (2.7.4), Reactjs, and Postgresql 12. Please make sure 
-To start this up after download install/start up postgresql 12 and then in your backend terminal:
+to install and start up postgresql 12 and then in your backend terminal:
 
 - bundle install
 - rake db:migrate (and optionally in the same line db:seed)
