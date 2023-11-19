@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react"
 import { UserContext } from "../context/user"
 import { ErrorsContext } from "../context/errors"
 
-function EmoteBar({emotes, storyId}){
+function EmoteBar({emotes, storyId, updateEmotes}){
     const {user} = useContext(UserContext)
     const {setErrors} = useContext(ErrorsContext)
     const [loaded, setLoaded] = useState(false)
@@ -19,9 +19,21 @@ function EmoteBar({emotes, storyId}){
             populateEmoteMap()
             setLoaded(true)
         }
-    }, [])
+    })
 
     useEffect(()=>{
+        Array.prototype.indexOfObject = function (param){
+            for (let i = 0; i < this.length; i++){
+                if (typeof param === 'function'){
+                    if(param(this[i])) return i
+                }
+                else{
+                    if (this[i] === param) return i
+                }
+            }
+            return -1
+        }
+
         if (user.id !== 0){
             const emoteIndex = emotes.indexOfObject(emote =>{
                 return emote.user_id === user.id
@@ -43,18 +55,6 @@ function EmoteBar({emotes, storyId}){
                 setUserEmoteIndex(()=>emotes.length - 1)
             }
         }
-
-        Array.prototype.indexOfObject = function (param){
-            for (let i = 0; i < this.length; i++){
-                if (typeof param === 'function'){
-                    if(param(this[i])) return i
-                }
-                else{
-                    if (this[i] === param) return i
-                }
-            }
-            return -1
-        }  
     }
     , [user])
 
@@ -87,6 +87,9 @@ function EmoteBar({emotes, storyId}){
         }
 
         const emote = {...emotes[userEmoteIndex], [e.target.name]: !emotes[userEmoteIndex][e.target.name]}
+        let url = '/emotes'
+
+        if (!emote.artificial) url += `/${emote.id}`
 
         const configObject = {
             method: emote.artificial ? "POST" : "PATCH",
@@ -97,19 +100,20 @@ function EmoteBar({emotes, storyId}){
             body: JSON.stringify(emote)
         }
 
-        const response = await fetch('/emotes', configObject)
+        const response = await fetch(url, configObject)
         const data = await response.json()
 
         if(response.ok){
-            console.log(data)
-            //callback function to update emotes
+            updateEmotes(data, !!emote.artificial)
+            setLoaded(false)
         }
         else{
             setErrors(data.errors)
         }
     }
-    if (!loaded) return <p>Loading...</p>
 
+    if (!loaded) return <p>Loading...</p>
+console.log("In Emotebar", emotes)
     return(
         <div className='emotebar'>
             <button className={checkUserMood("happy") ? "selected" : "deselected"} name="happy" onClick={handleClick}>😀 {emoteMap.happy}</button>

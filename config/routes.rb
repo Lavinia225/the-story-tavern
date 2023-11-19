@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :genres
   resources :tags, only: [:create, :destroy]
   resources :users, only: [:destroy]
-  resources :emotes, only: [:create]
+  resources :emotes, only: [:create, :update]
   
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

@@ -4,7 +4,7 @@ import { UserContext } from '../context/user'
 import { ErrorsContext } from '../context/errors'
 import EmoteBar from './EmoteBar'
 
-function Story({story}){
+function Story({story, updateEmotes}){
     const history= useHistory()
     const {user} = useContext(UserContext)
     const {setErrors} = useContext(ErrorsContext)
@@ -55,7 +55,7 @@ function Story({story}){
             <p id='story-author'>By: {story.creator}</p>
             {story.genres.length > 0 ? <p>{genreStringer()}</p> : null}
             <p id='story-body'>{story.body}</p>
-            {<EmoteBar emotes={story.emotes} storyId={story.id}/>}
+            {<EmoteBar emotes={story.emotes} storyId={story.id} updateEmotes={updateEmotes}/>}
         </div>
     )
 }

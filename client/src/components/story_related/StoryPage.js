@@ -25,6 +25,28 @@ function StoryPage(){
         }
     }, [])
 
+    function updateStoryEmotes(data, posting){
+        let newEmotes;
+
+        if(posting){
+            newEmotes = [...story.emotes, data]
+        }
+        else{
+            newEmotes = story.emotes.map(updateEmote)
+        }
+        
+        setStory({...story, emotes: newEmotes})
+
+        function updateEmote(emote){
+            if (emote.id === data.id){
+                return data
+            }
+            else{
+                return emote
+            }
+        }
+    }
+
     function updateStoryState(data){
         setStory(data)
     }
@@ -36,7 +58,7 @@ function StoryPage(){
                 <p>Loading</p>
             </>)
     }
-
+console.log("In story page", story.emotes)
     return(
         <div>
             {displayErrors()}
@@ -45,7 +67,7 @@ function StoryPage(){
                     <EditStoryForm story={story} updateStoryState={updateStoryState}/>
                 </Route>
                 <Route path='/stories/:id'>
-                    <Story story={story}/>
+                    <Story story={story} updateEmotes={updateStoryEmotes}/>
                 </Route>
             </Switch>
         </div>
