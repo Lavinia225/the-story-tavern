@@ -36,7 +36,7 @@ function EmoteBar({emotes, storyId, updateEmotes}){
 
         if (user.id !== 0){
             const emoteIndex = emotes.indexOfObject(emote =>{
-                return emote.user_id === user.id
+                return emote.user_id === user.id && !emote.artificial
             })
 
             if (emoteIndex !== -1){
@@ -56,7 +56,7 @@ function EmoteBar({emotes, storyId, updateEmotes}){
             }
         }
     }
-    , [user])
+    , [user, emotes])
 
     function populateEmoteMap(){
         const tempEmoteMap = {happy: 0, sad: 0, mad: 0, heart: 0}
@@ -113,7 +113,7 @@ function EmoteBar({emotes, storyId, updateEmotes}){
     }
 
     if (!loaded) return <p>Loading...</p>
-console.log("In Emotebar", emotes)
+
     return(
         <div className='emotebar'>
             <button className={checkUserMood("happy") ? "selected" : "deselected"} name="happy" onClick={handleClick}>😀 {emoteMap.happy}</button>

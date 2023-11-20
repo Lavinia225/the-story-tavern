@@ -58,7 +58,7 @@ function StoryPage(){
                 <p>Loading</p>
             </>)
     }
-console.log("In story page", story.emotes)
+
     return(
         <div>
             {displayErrors()}
