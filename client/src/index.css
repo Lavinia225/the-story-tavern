@@ -188,3 +188,21 @@ table, th, td {
 #new-story-select {
   text-align: center;
 }
+
+#create-account {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 200px;
+  padding-top: 20px;
+  text-align: center;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 200px;
+  padding-top: 20px;
+  text-align: center;
+}
