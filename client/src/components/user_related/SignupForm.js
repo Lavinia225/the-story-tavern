@@ -50,6 +50,7 @@ function SignupForm(){
     return(
         <div id='signup'>
             {displayErrors()}
+            <p>Password needs an Uppercase, Lowercase, Number, Symbol, and a range of 8~40 characters</p>
             <form id='create-account' onSubmit={handleSubmit}>
                 <label htmlFor='username'>Username: </label>
                 <input type='text' name='username' value={formData.username} onChange={handleChange} required/>

@@ -194,7 +194,6 @@ table, th, td {
   flex-direction: column;
   margin: auto;
   max-width: 200px;
-  padding-top: 20px;
   text-align: center;
 }
 
@@ -205,4 +204,8 @@ table, th, td {
   max-width: 200px;
   padding-top: 20px;
   text-align: center;
+}
+
+#signup {
+  padding-top: 20px;
 }

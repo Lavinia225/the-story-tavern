@@ -83,7 +83,7 @@ function EmoteBar({emotes, storyId, updateEmotes}){
 
     async function handleClick(e){ 
         if (user.id === 0){
-            setErrors(["You must be logged in to use this."])
+            return setErrors(["You must be logged in to use this."])
         }
 
         const emote = {...emotes[userEmoteIndex], [e.target.name]: !emotes[userEmoteIndex][e.target.name]}
