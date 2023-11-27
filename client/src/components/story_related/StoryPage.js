@@ -18,6 +18,7 @@ function StoryPage(){
 
             if (response.ok){
                 setStory(data)
+                setErrors([])
             }
             else{
                 setErrors(data.errors)

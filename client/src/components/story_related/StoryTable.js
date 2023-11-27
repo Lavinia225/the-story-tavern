@@ -13,6 +13,7 @@ function StoryTable(){
 
     useEffect(()=>{
         getStories(currentPage())
+        setErrors([])
     }, [])
 
     async function getStories(page){
@@ -21,6 +22,7 @@ function StoryTable(){
 
         if (response.ok){
             setStories(data)
+            setErrors([])
         }
         else{
             setErrors(data.errors)

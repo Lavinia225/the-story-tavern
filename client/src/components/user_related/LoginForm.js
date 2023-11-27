@@ -1,4 +1,4 @@
-import {useState, useContext} from 'react'
+import {useState, useContext, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import {UserContext} from '../context/user'
 import {ErrorsContext} from '../context/errors'
@@ -11,6 +11,8 @@ function LoginForm(){
         username: "",
         password: ""
     })
+
+    useEffect(()=>{setErrors([])}, [])
 
     async function handleSubmit(e){
         e.preventDefault()

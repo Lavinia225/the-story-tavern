@@ -1,4 +1,4 @@
-import {useState, useContext} from 'react'
+import {useState, useContext, useEffect} from 'react'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { ErrorsContext } from '../context/errors'
 import GenreSelector from './GenreSelector'
@@ -10,6 +10,8 @@ function NewStoryForm(){
         title: "",
         body: ""
     })
+
+    useEffect(()=>{setErrors([])}, [])
 
     async function handleSubmit(e){
         e.preventDefault()
