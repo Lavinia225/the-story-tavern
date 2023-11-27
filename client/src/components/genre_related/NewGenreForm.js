@@ -28,6 +28,7 @@ function NewGenreForm({handleCreateChange}){
 
         if (response.ok){
             setGenres([...genres, data])
+            setErrors([])
             handleCreateChange()
         }
         else{

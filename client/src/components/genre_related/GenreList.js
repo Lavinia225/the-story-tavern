@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import {useHistory} from 'react-router-dom'
 import { UserContext } from "../context/user"
 import { GenresContext } from "../context/genres"
@@ -9,7 +9,9 @@ function GenreList(){
     const history = useHistory()
     const {user} = useContext(UserContext)
     const {genres} = useContext(GenresContext)
-    const {displayErrors} = useContext(ErrorsContext)
+    const {displayErrors, setErrors} = useContext(ErrorsContext)
+
+    useEffect(()=>{setErrors([])}, [])
 
     if (user.access_level < 1) return <h2 style={{color: 'purple', textAlign: "center"}}>You are not authorized to be here.</h2>
 

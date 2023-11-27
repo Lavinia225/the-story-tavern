@@ -14,6 +14,8 @@ function GenrePage(){
     const [genre, setGenre] = useState({genre: "", id: 0})
     const [editing, setEditing] = useState(false)
 
+    useEffect(()=>{setErrors([])}, [])
+    
     useEffect(()=>{
         if (genres.length > 0){
             const targetGenre = genres.find(genre =>genre.id === parseInt(params.id))

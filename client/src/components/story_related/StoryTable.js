@@ -8,13 +8,13 @@ function StoryTable(){
     const history = useHistory()
     let {search} = useLocation()
     const {user} = useContext(UserContext)
-    const {setErrors, displayErrors} = useContext(ErrorsContext)
+    const {errors, setErrors, displayErrors} = useContext(ErrorsContext)
     const [stories, setStories] = useState([])
 
     useEffect(()=>{
         getStories(currentPage())
         setErrors([])
-    }, [])
+    }, [currentPage()])
 
     async function getStories(page){
         const response = await fetch(`/stories?page=${page}`)
@@ -31,12 +31,17 @@ function StoryTable(){
 
     function goToPreviousPage(){
         history.push(`/stories?page=${currentPage() - 1}`)
-        getStories(currentPage() - 1)
+        //getStories(currentPage() - 1)
     }
 
     function goToNextPage(){
-        history.push(`/stories?page=${currentPage() + 1}`)
-        getStories(currentPage() + 1)
+        if(errors.find(error => error === "There are no stories on this page or any afterwards.")){
+            return
+        }
+        else{
+            history.push(`/stories?page=${currentPage() + 1}`)
+           // getStories(currentPage() + 1)
+        }
     }
 
     function currentPage(){
