@@ -10,7 +10,7 @@ function StoryPreview({story}){
     return(
         <tr id='story-preview'>
             <td>
-                <p id='story-preview-title'><span onClick={handleClick}>📖</span>{story.title}<br/>
+                <p id='story-preview-title' onClick={handleClick}><span>📖</span>{story.title}<br/>
                     <span id='story-preview-user'>By: {story.creator}</span>
                 </p>
                 <p id='story-preview-summary'>{story.summary}</p>

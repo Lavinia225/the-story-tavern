@@ -54,10 +54,13 @@ function StoryTable(){
     return(
         <div id='stories'>
             {displayErrors()}
-            <div id='button-container'>
-                {currentPage() !== 1 ? <button onClick={goToPreviousPage}>Previous Page</button> : null}
-                <button onClick={goToNextPage}>Next Page</button>
-                {user.id !== 0 ? <button id='create-stories-button' onClick={handleRedirect}>Create Story</button> : null}
+            <div>
+                <p>Click the little book icon or story title/author to read</p>
+                <div id='button-container'>
+                    {currentPage() !== 1 ? <button onClick={goToPreviousPage}>Previous Page</button> : null}
+                    <button onClick={goToNextPage}>Next Page</button>
+                    {user.id !== 0 ? <button id='create-stories-button' onClick={handleRedirect}>Create Story</button> : null}
+                </div>
             </div>
             <table>
                 <tbody>
