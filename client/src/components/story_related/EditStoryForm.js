@@ -50,20 +50,33 @@ function EditStoryForm({story, updateStoryState}){
         }
     }
 
+    function reformatGenres(){
+        return story.genres.map(genre => genre.genre)
+    }
+
     function handleChange(e){
         setFormData({...formData, [e.target.id]: e.target.value})
+    }
+
+    function cancelEditing(){
+        const confirmation = window.confirm("Are you sure? Be a shame to lose a few paragraphs to a misclick.")
+
+        if(confirmation){
+            history.push(`/stories/${story.id}/`)
+        }
     }
 
     if (user.id !== story.user_id) return <h2 style={{color: 'purple', textAlign: "center"}}>You are not authorized to be here.</h2>
 
     return(
         <div id='story-edit-form'>
-            <GenreSelector />
+            <GenreSelector activeGenres={reformatGenres()}/>
             <form id='new-story' onSubmit={handleSubmit}>
                 <label htmlFor='title'>Title: </label>
                 <input type='text' id='title' onChange={handleChange} value={formData.title} required/>
                 <label htmlFor='body'>Body: </label>
-                <textarea id='body' onChange={handleChange} value={formData.body} required/>
+                <textarea id='body' rows="10" onChange={handleChange} value={formData.body} required/>
+                <button type='button' onClick={cancelEditing}>Cancel Editing</button>
                 <button type='submit'>Submit</button>
             </form>
         </div>

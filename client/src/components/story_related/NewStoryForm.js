@@ -52,6 +52,14 @@ function NewStoryForm(){
         setFormData({...formData, [e.target.id]: e.target.value})
     }
 
+    function cancelCreating(){
+        const confirmation = window.confirm("Are you sure? Be a shame to lose a few paragraphs to a misclick.")
+
+        if(confirmation){
+            history.push(`/stories`)
+        }
+    }
+
     return(
     <div id='new-story-div'>
         {displayErrors()}
@@ -60,7 +68,8 @@ function NewStoryForm(){
             <label htmlFor='title'>Title: </label>
             <input type='text' id='title' onChange={handleChange} value={formData.title} required/>
             <label htmlFor='body'>Body: </label>
-            <textarea  id='body' onChange={handleChange} value={formData.body} required/>
+            <textarea  id='body' rows="10" onChange={handleChange} value={formData.body} required/>
+            <button type='button' onClick={cancelCreating}>Cancel Creating</button>
             <button type='submit'>Submit</button>
         </form>
     </div>

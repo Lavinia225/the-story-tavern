@@ -2,6 +2,12 @@ body {
   background-color: #E6E6FA;
 }
 
+#home > img {
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+
 #user-bar {
   position: absolute;
   top: 20px;
@@ -233,4 +239,9 @@ table, th, td {
 
 #signup {
   padding-top: 20px;
+}
+
+#new-story-select option:checked {
+  background-color: #1967D2;
+  color: #fff;
 }

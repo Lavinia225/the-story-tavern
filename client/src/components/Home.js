@@ -1,7 +1,10 @@
+import tavern from '../assets/images/tavern.jpg'
+
 function Home(){
     return(
         <div id='home'>
             <h2>Welcome to The Story Tavern!</h2>
+            <img src={tavern} alt='a few happy people at a tavern'></img>
             <p>Haiya! If by some miracle you have obtained the url to this website, know that it is still being created.</p>
             <div id='home-grid'>
                 <div id='home-column'>

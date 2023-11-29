@@ -56,6 +56,10 @@ On-Going. Current Unimplemented Stretch goals are:
 
 If you are having trouble, contact thepuddingdeity@gmail.com with the subject as: The Story Tavern or open an Issue here on github.
 
+## Sources
+
+Artwork on the front page is from the Toledo Museum - John Lewis Krimmel (American, 1786-1821) Village Tavern. Oil on canvas, 1813-1814.
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
