@@ -25,13 +25,13 @@ function StoryTable(){
             setErrors([])
         }
         else{
+            setStories([])
             setErrors(data.errors)
         }
     }
 
     function goToPreviousPage(){
         history.push(`/stories?page=${currentPage() - 1}`)
-        //getStories(currentPage() - 1)
     }
 
     function goToNextPage(){
@@ -40,7 +40,6 @@ function StoryTable(){
         }
         else{
             history.push(`/stories?page=${currentPage() + 1}`)
-           // getStories(currentPage() + 1)
         }
     }
 
