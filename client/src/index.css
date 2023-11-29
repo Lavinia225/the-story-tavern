@@ -220,6 +220,11 @@ table, th, td {
   text-align: center;
 }
 
+#new-story-select select{
+  position: relative;
+  top: 20px;
+}
+
 #create-account {
   display: flex;
   flex-direction: column;
