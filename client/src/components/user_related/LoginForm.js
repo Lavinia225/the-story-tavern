@@ -32,7 +32,7 @@ function LoginForm(){
         if (response.ok){
             setUser(data)
             setErrors([])
-            history.goBack()
+            history.push('/')
         }
         else{
             setErrors(data.errors)
