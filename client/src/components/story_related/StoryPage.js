@@ -1,5 +1,5 @@
 import {useState, useEffect, useContext} from 'react'
-import {useParams, Switch, Route} from 'react-router-dom'
+import {useParams, Routes, Route} from 'react-router-dom'
 import { ErrorsContext } from '../context/errors'
 import Story from './Story'
 import EditStoryForm from './EditStoryForm'
@@ -63,14 +63,10 @@ function StoryPage(){
     return(
         <div>
             {displayErrors()}
-            <Switch>
-                <Route path='/stories/:id/edit'>
-                    <EditStoryForm story={story} updateStoryState={updateStoryState}/>
-                </Route>
-                <Route path='/stories/:id'>
-                    <Story story={story} updateEmotes={updateStoryEmotes}/>
-                </Route>
-            </Switch>
+            <Routes>
+                <Route path='/edit' element={<EditStoryForm story={story} updateStoryState={updateStoryState}/>}/>
+                <Route path='/' element={<Story story={story} updateEmotes={updateStoryEmotes}/>}/>
+            </Routes>
         </div>
     )
 }

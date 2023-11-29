@@ -1,10 +1,10 @@
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import { useNavigate } from "react-router-dom"
 
 function StoryPreview({story}){
-    const history = useHistory()
+    const navigate = useNavigate()
 
     function handleClick(){
-        history.push(`stories/${story.id}`)
+        navigate(`/stories/${story.id}`)
     }
 
     return(

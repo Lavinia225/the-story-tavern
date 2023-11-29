@@ -1,11 +1,11 @@
 import {useContext} from 'react'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/user'
 import { ErrorsContext } from '../context/errors'
 import EmoteBar from './EmoteBar'
 
 function Story({story, updateEmotes}){
-    const history= useHistory()
+    const navigate = useNavigate()
     const {user} = useContext(UserContext)
     const {setErrors} = useContext(ErrorsContext)
 
@@ -25,7 +25,7 @@ function Story({story, updateEmotes}){
             const res = await fetch(`/stories/${story.id}`, {method: "DELETE"})
 
             if (res.ok){
-                history.push('/stories')
+                navigate('/stories')
             }
             else{
                 const data = await res.json()
@@ -35,7 +35,7 @@ function Story({story, updateEmotes}){
     }
 
     function handleEditClick(){
-        history.push(`/stories/${story.id}/edit`)
+        navigate(`/stories/${story.id}/edit`)
     }
 
     function deletePrivilages(){

@@ -1,10 +1,10 @@
 import {useState, useContext, useEffect} from 'react'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { useNavigate } from 'react-router-dom'
 import { ErrorsContext } from '../context/errors'
 import GenreSelector from './GenreSelector'
 
 function NewStoryForm(){
-    const history = useHistory()
+    const navigate = useNavigate()
     const {setErrors, displayErrors} = useContext(ErrorsContext)
     const [formData, setFormData] = useState({
         title: "",
@@ -32,7 +32,7 @@ function NewStoryForm(){
         const data = await response.json()
 
         if (response.ok){
-            history.push(`/stories/${data.id}`)
+            navigate(`/stories/${data.id}`)
         }
         else{
             setErrors(data.errors)
@@ -56,7 +56,7 @@ function NewStoryForm(){
         const confirmation = window.confirm("Are you sure? Be a shame to lose a few paragraphs to a misclick.")
 
         if(confirmation){
-            history.push(`/stories`)
+            navigate(`/stories`)
         }
     }
 

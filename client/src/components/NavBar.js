@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min"
+import { NavLink } from "react-router-dom"
 import { useContext } from "react"
 import { UserContext } from "./context/user"
 

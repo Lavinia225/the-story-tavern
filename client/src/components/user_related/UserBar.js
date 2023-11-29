@@ -1,10 +1,9 @@
 import { useContext } from "react"
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import { useNavigate, NavLink } from "react-router-dom"
 import { UserContext } from "../context/user"
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min"
 
 function UserBar(){
-    const history = useHistory()
+    const navigate = useNavigate()
     const {user, setUser} = useContext(UserContext)
 
     function renderWelcomeLogout(){
@@ -38,7 +37,7 @@ function UserBar(){
 
             if (response.status == 204){
                 setUser({id: 0, display_name: "", access_level: 0})
-                history.push('/')
+                navigate('/')
             }
             else{
                 const data = response.json()
@@ -50,7 +49,7 @@ function UserBar(){
     function logout(){
         fetch('/logout', {method: "DELETE"})
         .then(setUser({id: 0, display_name: "", access_level: 0}))
-        history.push('/')
+        navigate('/')
     }
     
     return(

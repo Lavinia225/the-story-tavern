@@ -1,11 +1,11 @@
 import {useState, useEffect, useContext} from 'react'
-import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { ErrorsContext } from "../context/errors"
 import { UserContext } from '../context/user'
 import StoryPreview from './StoryPreview'
 
 function StoryTable(){
-    const history = useHistory()
+    const navigate = useNavigate()
     let {search} = useLocation()
     const {user} = useContext(UserContext)
     const {errors, setErrors, displayErrors} = useContext(ErrorsContext)
@@ -31,7 +31,7 @@ function StoryTable(){
     }
 
     function goToPreviousPage(){
-        history.push(`/stories?page=${currentPage() - 1}`)
+        navigate(`/stories?page=${currentPage() - 1}`)
     }
 
     function goToNextPage(){
@@ -39,7 +39,7 @@ function StoryTable(){
             return
         }
         else{
-            history.push(`/stories?page=${currentPage() + 1}`)
+            navigate(`/stories?page=${currentPage() + 1}`)
         }
     }
 
@@ -54,7 +54,7 @@ function StoryTable(){
     }
 
     function handleRedirect(){
-        history.push('/stories/new')
+        navigate('/stories/new')
     }
 
     return(

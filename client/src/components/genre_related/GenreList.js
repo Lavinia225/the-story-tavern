@@ -1,12 +1,12 @@
 import { useContext, useEffect } from "react"
-import {useHistory} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import { UserContext } from "../context/user"
 import { GenresContext } from "../context/genres"
 import { ErrorsContext } from "../context/errors"
 import NewGenreHandler from './NewGenreHandler'
 
 function GenreList(){
-    const history = useHistory()
+    const navigate = useNavigate()
     const {user} = useContext(UserContext)
     const {genres} = useContext(GenresContext)
     const {displayErrors, setErrors} = useContext(ErrorsContext)
@@ -16,7 +16,7 @@ function GenreList(){
     if (user.access_level < 1) return <h2 style={{color: 'purple', textAlign: "center"}}>You are not authorized to be here.</h2>
 
     function handleRedirect(id){
-        history.push(`/genres/${String(id)}`)
+        navigate(`/genres/${String(id)}`)
     }
         
     return(

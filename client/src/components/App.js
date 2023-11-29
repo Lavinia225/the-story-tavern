@@ -1,4 +1,4 @@
-import {Switch, Route} from 'react-router-dom'
+import {Routes, Route} from 'react-router-dom'
 import UserBar from './user_related/UserBar';
 import NavBar from './NavBar';
 import LoginForm from './user_related/LoginForm';
@@ -15,32 +15,16 @@ function App() {
     <div className="App">
       <NavBar />
       <UserBar />
-      <Switch>
-        <Route exact path='/'>
-          <Home />
-        </Route>
-        <Route path='/login'>
-          <LoginForm />
-        </Route>
-        <Route path='/signup'>
-          <SignupForm />
-        </Route>
-        <Route path='/stories/new'>
-          <NewStoryForm />
-        </Route>
-        <Route path='/stories/:id'>
-          <StoryPage />
-        </Route>
-        <Route path='/stories'>
-          <StoryTable />
-        </Route>
-        <Route path='/genres/:id'>
-          <GenrePage />
-        </Route>
-        <Route path='/genres'>
-          <GenreList />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route exact path='/' element={<Home/>}/>
+        <Route path='/login' element={<LoginForm/>}/>
+        <Route path='/signup' element={<SignupForm/>}/>
+        <Route path='/stories/new' element={<NewStoryForm/>}/>
+        <Route path='/stories/:id/*' element={<StoryPage/>}/>
+        <Route path='/stories' element={<StoryTable/>}/>
+        <Route path='/genres/:id/*' element={<GenrePage/>}/>
+        <Route path='/genres' element={<GenreList/>}/>
+      </Routes>
     </div>
   );
 }

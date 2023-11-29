@@ -1,10 +1,10 @@
 import {useState, useContext, useEffect} from 'react'
-import {useHistory} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import { UserContext } from '../context/user'
 import { ErrorsContext } from '../context/errors'
 
 function SignupForm(){
-    const history = useHistory()
+    const navigate = useNavigate()
     const {setUser} = useContext(UserContext)
     const {setErrors, displayErrors} = useContext(ErrorsContext)
     const [formData, setFormData] = useState({
@@ -35,7 +35,7 @@ function SignupForm(){
         if(response.ok){
             setUser(data)
             setErrors([])
-            history.push('/')
+            navigate('/')
         }
         else{
             setErrors(data.errors)

@@ -1,5 +1,5 @@
 import {useState, useEffect, useContext} from 'react'
-import { useParams, useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import { useParams, useNavigate } from "react-router-dom"
 import { GenresContext } from '../context/genres'
 import { UserContext } from '../context/user'
 import { ErrorsContext } from '../context/errors'
@@ -7,7 +7,7 @@ import GenreEditForm from './GenreEditForm'
 
 function GenrePage(){
     const params = useParams()
-    const history = useHistory()
+    const navigate = useNavigate()
     const {genres, setGenres} = useContext(GenresContext)
     const {user} = useContext(UserContext)
     const {setErrors, displayErrors} = useContext(ErrorsContext)
@@ -33,7 +33,7 @@ function GenrePage(){
 
             if (response.ok){
                 setGenres(genres.filter(oldGenre => oldGenre.id !== genre.id))
-                history.goBack()
+                navigate(-1)
             }
             else{
                 const data = await response.json()
@@ -44,7 +44,7 @@ function GenrePage(){
 
     function updateGenreState(data){
         setGenre(data)
-        setEditing(false)
+        handleEditProps()
         setGenres(genres.map(genre =>{
             if (genre.id === data.id){
                 return data
@@ -57,6 +57,12 @@ function GenrePage(){
 
     function handleEditClick(){
         setEditing(!editing)
+        navigate(`/genres/${genre.id}/edit`)
+    }
+
+    function handleEditProps(){
+        setEditing(!editing)
+        navigate(`/genres/${genre.id}`)
     }
 
     if (user.access_level < 1) return <h2 style={{color: 'purple', textAlign: "center"}}>You are not authorized to be here.</h2>
@@ -64,7 +70,7 @@ function GenrePage(){
     return(
         <div id='genrepage'>
             {displayErrors()}
-            {editing ? <GenreEditForm genre={genre} updateGenreState={updateGenreState} handleCancel={handleEditClick}/>: 
+            {editing ? <GenreEditForm genre={genre} updateGenreState={updateGenreState} handleCancel={handleEditProps}/>: 
                 <div>
                     <p>{genre.genre}</p>
                     <button onClick={handleEditClick}>Edit</button>

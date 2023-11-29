@@ -1,11 +1,11 @@
 import {useState, useContext} from 'react'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { useNavigate } from 'react-router-dom'
 import { ErrorsContext } from '../context/errors'
 import { UserContext } from '../context/user'
 import GenreSelector from './GenreSelector'
 
 function EditStoryForm({story, updateStoryState}){
-    const history = useHistory()
+    const navigate = useNavigate()
     const {user} = useContext(UserContext)
     const {setErrors} = useContext(ErrorsContext)
     const [formData, setFormData] = useState({
@@ -34,7 +34,7 @@ function EditStoryForm({story, updateStoryState}){
 
         if (res.ok){
             updateStoryState(data)
-            history.goBack()
+            navigate(-1)
         }
         else{
             setErrors(data.errors)
@@ -62,7 +62,7 @@ function EditStoryForm({story, updateStoryState}){
         const confirmation = window.confirm("Are you sure? Be a shame to lose a few paragraphs to a misclick.")
 
         if(confirmation){
-            history.push(`/stories/${story.id}/`)
+            navigate(`/stories/${story.id}/`)
         }
     }
 
