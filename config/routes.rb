@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
 
+  get '/stories/search', to: "stories#search"
+
   resources :stories
   resources :genres
   resources :tags, only: [:create, :destroy]

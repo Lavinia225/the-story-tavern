@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-    skip_before_action :authorize, only: [:index, :show]
+    skip_before_action :authorize, only: [:index, :show, :search]
 
     def index
         page = params[:page].to_i
@@ -67,7 +67,37 @@ class StoriesController < ApplicationController
         end
     end
 
+    def search
+        case params[:search_type]
+        when "title"
+            stories = Story.where(['lower(title) LIKE ?', "%#{params[:search].downcase}%"])
+        when "author"
+            stories = User.find_by('lower(display_name) = ?', params[:search].downcase).stories
+        when "genres"
+            query = genre_array_to_query(params[:search])
+            stories = Story.joins(:genres).where(query)
+        end
+
+        if !stories
+            render json: {errors: ["Invalid Search Parameter."]}, status: :bad_request
+        elsif stories.size == 0
+            render json: {errors: ["No stories found."]}, status: :not_found
+        else
+            render json: stories
+        end
+    end
+
     private
+
+    def genre_array_to_query(array)
+        query = ["genres.genre = ?", array[0]]
+
+        array.drop(1).each do |item|
+            query[0] += " OR genres.genre = ?"
+            query << item 
+        end
+        query
+    end
 
     def story_params
         params.permit(:title, :body)
