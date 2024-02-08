@@ -50,7 +50,6 @@ On-Going. Current Unimplemented Stretch goals are:
 - Editable Users (Sends email on success)
 - In addition to a user account edit dashboard, make their profile show stories they've created
 - Require password to delete account
-- Adding a searchbar to stories (search by title, genre(s), or creator)
 
 ## Contact
 
