@@ -9,6 +9,7 @@ import NewStoryForm from './story_related/NewStoryForm';
 import StoryPage from './story_related/StoryPage'
 import GenreList from './genre_related/GenreList';
 import GenrePage from './genre_related/GenrePage'
+import SettingsDashboard from './user_related/SettingsDashboard';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/stories' element={<StoryTable/>}/>
         <Route path='/genres/:id/*' element={<GenrePage/>}/>
         <Route path='/genres' element={<GenreList/>}/>
+        <Route path='/user/settings' element={<SettingsDashboard/>}/>
       </Routes>
     </div>
   );

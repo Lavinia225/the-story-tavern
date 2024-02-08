@@ -13,6 +13,7 @@ function UserBar(){
                 <div className='dropdown'>
                     <button>Profile</button>
                     <div className='dropdown-content'>
+                        <a onClick={navigateToSettings}>Settings</a>
                         <a onClick={deleteAccount}>Delete Account</a>
                         <a onClick={logout}>Logout</a>
                     </div>
@@ -50,6 +51,10 @@ function UserBar(){
         fetch('/logout', {method: "DELETE"})
         .then(setUser({id: 0, display_name: "", access_level: 0}))
         navigate('/')
+    }
+
+    function navigateToSettings(){
+        navigate('/user/settings')
     }
     
     return(
