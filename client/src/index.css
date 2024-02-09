@@ -263,11 +263,35 @@ table, th, td {
   border: 1px solid black;
   border-radius: 5px;
   background-color: #B4A3CB;
+}
+
+.category-box > div {
   display: flex;
   justify-content: center;
 }
 
-.category-box svg {
+.category-box > div svg {
   padding-top: 22px;
   padding-left: 15px;
+}
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 200px;
+  text-align: center;
+}
+
+.settings-form > * {
+  margin-bottom: 5px;
+}
+
+.settings-form > button {
+  max-width: 100px;
+  margin-left: 50px;
+}
+
+[hidden] {
+  display: none;
 }
