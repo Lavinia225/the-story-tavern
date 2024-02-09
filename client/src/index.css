@@ -250,3 +250,24 @@ table, th, td {
   background-color: #1967D2;
   color: #fff;
 }
+
+.user-settings {
+  margin: auto;
+  max-width: 400px;
+  text-align: center;
+  padding-top: 50px;
+  list-style-type: none;
+}
+
+.category-box {
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #B4A3CB;
+  display: flex;
+  justify-content: center;
+}
+
+.category-box svg {
+  padding-top: 22px;
+  padding-left: 15px;
+}
