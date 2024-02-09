@@ -22,6 +22,15 @@ class UsersController < ApplicationController
         end
     end
 
+    def change_display_name
+        if @current_user&.authenticate(params[:password])
+            @current_user.update!(display_name: params[:display_name], password: params[:password])
+            render json: @current_user
+        else
+            render json: {errors: "You are not authorized to update this user."}, status: :unauthorized
+        end
+    end
+
     private
 
     def user_params

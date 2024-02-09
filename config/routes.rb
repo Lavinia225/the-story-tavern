@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get '/me', to: "users#show"
   post '/signup', to:"users#create"
+  post '/change_display_name', to: "users#change_display_name"
 
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
