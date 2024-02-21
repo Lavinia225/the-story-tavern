@@ -22,7 +22,7 @@ function DeleteAccountForm({hide, unhide}){
             <form className='settings-form' hidden={hide}>
                 <label htmlFor='delete-account-password'>Password: </label>
                 <input id='delete-account-password' type='password' name='password' value={formData.password} onChange={handleChange} required></input>
-                <button type='submit'>Submit</button>
+                <button type='submit' id='delete-account-button'>Submit</button>
             </form>
         </div>
     )

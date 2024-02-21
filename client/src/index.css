@@ -310,3 +310,7 @@ table, th, td {
 #delete-account > * {
   margin-top: 0px;
 }
+
+#delete-account-button {
+   margin-left: 40px;
+}
