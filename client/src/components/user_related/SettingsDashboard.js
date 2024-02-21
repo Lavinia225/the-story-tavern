@@ -10,7 +10,6 @@ function SettingsDashboard(){
         setHide({...hide, [`${component}`]: !hide[`${component}`]})
     }
 
-    console.log(hide['changeDisplayNameForm'])
     return(
         <ul className='user-settings'>
             <li className='category-box'>
@@ -20,7 +19,7 @@ function SettingsDashboard(){
                         <path d="M9.41 14l-1.29-1.29L11.83 9H2V7h9.83L8.12 3.29 9.41 2l5.29 5.29a1 1 0 010 1.41z"></path>
                     </svg>
                 </div>
-                <ChangeDisplayNameForm hide={hide.changeDisplayNameForm}/>
+                <ChangeDisplayNameForm hide={hide.changeDisplayNameForm} unhide={handleChangeHide}/>
             </li>
         </ul>
     )
