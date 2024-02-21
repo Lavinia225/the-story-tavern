@@ -25,6 +25,7 @@ class UsersController < ApplicationController
     def change_display_name
         if @current_user&.authenticate(params[:password])
             @current_user.update!(display_name: params[:display_name], password: params[:password])
+            UserMailer.with(user: @current_user).changed_display_name_email.deliver_now
             render json: @current_user
         else
             render json: {errors: "You are not authorized to update this user."}, status: :unauthorized
