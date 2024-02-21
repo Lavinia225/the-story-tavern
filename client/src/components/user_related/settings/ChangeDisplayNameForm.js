@@ -41,7 +41,6 @@ function ChangeDisplayNameForm({hide, unhide}){
             setErrors(data.errors)
         }
     }
-    console.log(user)
 
     return (
         <form className='settings-form' hidden={hide} onSubmit={handleSubmit}>

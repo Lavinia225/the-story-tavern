@@ -263,6 +263,7 @@ table, th, td {
   border: 1px solid black;
   border-radius: 5px;
   background-color: #B4A3CB;
+  margin-bottom: 30px;
 }
 
 .category-box > div {
@@ -294,4 +295,18 @@ table, th, td {
 
 [hidden] {
   display: none;
+}
+
+#delete-account-warning {
+  color: red;
+  text-decoration: underline;
+}
+
+#delete-account {
+  display: flex;
+  flex-direction: column;
+}
+
+#delete-account > * {
+  margin-top: 0px;
 }
