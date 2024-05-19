@@ -75,7 +75,11 @@ function StoryTable(){
                         <th>Genres</th>
                         <th>Last Edited</th>
                     </tr>
-                    {stories.map(story => <StoryPreview key={story.id} story={story}/>)}
+                    {stories.length > 0 ? stories.map(story => <StoryPreview key={story.id} story={story}/>)
+                    :   <div className='progress-bar'>
+                            <label htmlFor="load-stories-bar">Loading stories...</label>
+                            <progress id='load-stories-bar'/>
+                        </div>}
                 </tbody>
             </table>
         </div>

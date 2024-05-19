@@ -116,6 +116,12 @@ table, th, td {
   left: 40%;
 }
 
+.progress-bar {
+  margin: auto;
+  max-width: 50%;
+  text-align: center;
+}
+
 #button-container {
   position: relative;
   top: 10px;
