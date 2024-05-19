@@ -36,8 +36,6 @@ If you wanted to create or modify stories of your own, or be able to emote, crea
 Admin accounts (access level 1, which can only be set in the server console using `rails c` and updating a user with ActiveRecord commands) can
 also navigate to /genres and add, modify, or delete genres there, in addition to being able to delete any story for a aid of moderation.
 
--Usage gif goes here-
-
 ## Contributing
 
 Not currently. Feel free to modify and use as a base for your own version, however.
