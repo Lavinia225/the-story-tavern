@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
     validates :display_name, {presence: true, uniqueness: true}
     validates :email, {presence: true, uniqueness: true}
     validates :password, {length: {in: 8..40}}
+    validates :password_confirmation, presence: true
 
     validates_format_of :email, {multiline: true, with: email_regex}
     validates_format_of :password, {with: /[a-z]/, message: "Password must include a lowercase character"}

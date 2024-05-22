@@ -11,6 +11,7 @@ function SignupForm(){
         username: "",
         display_name: "",
         password: "",
+        password_confirmation: "",
         email: ""
     })
 
@@ -62,6 +63,8 @@ function SignupForm(){
                 <input type='text' name='email' value={formData.email} onChange={handleChange} required/>
                 <label htmlFor='password'>Password: </label>
                 <input type='password' name='password' value={formData.password} onChange={handleChange} required/>
+                <label htmlFor='password_confirmation'>Password Confirmation: </label>
+                <input type='password' name='password_confirmation' value={formData.password_confirmation} onChange={handleChange} required/>
                 <button type='submit'>Submit</button>
             </form>
         </div>
