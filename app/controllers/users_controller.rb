@@ -13,12 +13,12 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        if params[:id].to_i == @current_user.id
+        if (params[:id].to_i == @current_user.id) && @current_user.authenticate(params[:password])
             UserMailer.with(user: @current_user).goodbye_email.deliver_now
             @current_user.destroy!
             head :no_content
         else
-            render json: {errors: ["You can not delete other users."]}, status: :unauthorized
+            render json: {errors: ["Incorrect Password or UserID."]}, status: :unauthorized
         end
     end
 

@@ -1,12 +1,14 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import ChangeDisplayNameForm from "./settings/ChangeDisplayNameForm"
 import DeleteAccountForm from "./settings/DeleteAccountForm"
+import { ErrorsContext } from "../context/errors"
 
 function SettingsDashboard(){
     const [hide, setHide] = useState({
         'changeDisplayNameForm': true,
         'deleteAccountForm': true
     })
+    const {displayErrors} = useContext(ErrorsContext)
 
     function handleChangeHide(component){
         setHide({...hide, [`${component}`]: !hide[`${component}`]})
@@ -14,6 +16,7 @@ function SettingsDashboard(){
 
     return(
         <ul className='user-settings'>
+            <li>{displayErrors()}</li>
             <li className='category-box'>
                 <div>
                     <h3>Change Display Name</h3>
