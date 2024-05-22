@@ -45,9 +45,8 @@ Not currently. Feel free to modify and use as a base for your own version, howev
 On-Going. Current Unimplemented Stretch goals are:
 - A forgot password function (this involves email)
 - A reset password function (this involves email)
-- Editable Users (Sends email on success)
+- Editable Users (Sends email on success. Display name is now editable, email and password must also be changeable.)
 - In addition to a user account edit dashboard, make their profile show stories they've created
-- Require password to delete account
 
 ## Contact
 
